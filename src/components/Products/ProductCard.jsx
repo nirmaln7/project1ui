@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import "./ProductCard.css";
+import config from "../../config.json";
 import star from "../../assets/redstar.png";
 import basket from "../../assets/basket.png";
 import { NavLink } from "react-router-dom";
@@ -15,7 +16,7 @@ const ProductCard = ({ product }) => {
       <div className="product_image">
         <NavLink to={"/products/" + product?._id} className="">
           <img
-            src={"http://localhost:5000/products/" + product?.images[0]}
+            src={`${config.backendURL}/products/` + product?.images[0]}
             alt=""
           />
         </NavLink>

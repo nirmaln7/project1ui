@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import config from "../../config.json";
 import "./CartPage.css";
 import remove from "../../assets/cart.png";
 import Table from "../Common/Table";
@@ -34,7 +35,7 @@ const CartPage = () => {
     <section className="align_center cart_page">
       <div className="align_center user_info">
         <img
-          src={`http://localhost:5000/profile/${userObj?.profilePic}`}
+          src={`${config.backendURL}/profile/${userObj?.profilePic}`}
           alt="user profile"
         />
         <div>
