@@ -18,6 +18,7 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
+  
   const [formError, setFormError] = useState("");
   const onSubmit = async (formData) => {
     try {
@@ -46,7 +47,7 @@ const LoginPage = () => {
         <h2>Login Form</h2>
         <div className="form_inputs">
           <div>
-            <label htmlFor="email">Name</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"

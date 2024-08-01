@@ -1,61 +1,66 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import "./SignUpPage.css";
-import "../Authentication/LoginPage.css";
 import user from "../../assets/user.png";
 import { getUser, signup } from "../../services/userServices";
 import { Navigate } from "react-router-dom";
 
 const schema = z
   .object({
-    email: z.string().email({ message: "Enter a valid email" }),
-    name: z.string().min(3, { message: "Name should be atleast 3 characters" }),
+    name: z
+      .string()
+      .min(3, { message: "Name should be at least 3 characters." }),
+    email: z.string().email({ message: "Please enter valid email." }),
     password: z
       .string()
-      .min(8, { message: "Password should be atleast 8 characters" }),
+      .min(8, { message: "Password must be at least 8 characters." }),
     confirmPassword: z.string(),
     deliveryAddress: z
       .string()
-      .min(15, { message: "Address should be atleast 8 characters" }),
+      .min(15, { message: "Address must be at least 15 characters." }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Confirm Password doesnot match Password,",
+    message: "Confirm Password does not match Password.",
     path: ["confirmPassword"],
   });
+
 const SignUpPage = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [formError, setFormError] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(schema),
-  });
+  } = useForm({ resolver: zodResolver(schema) });
+
   const onSubmit = async (formData) => {
     try {
       await signup(formData, profilePic);
 
       window.location = "/";
-    } catch (e) {
-      if (e.response && e.response.status === 400) {
-        setFormError(e.response.data.message);
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
+        setFormError(err.response.data.message);
       }
     }
   };
+
   if (getUser()) {
     return <Navigate to="/" />;
   }
+
   return (
     <section className="align_center form_page">
       <form
-        className="authentication_form align_center signup_form"
+        className="authentication_form signup_form"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2>SignUp Form</h2>
+
         <div className="image_input_section">
           <div className="image_preview">
             <img
@@ -68,11 +73,13 @@ const SignUpPage = () => {
           </label>
           <input
             type="file"
+            onChange={(e) => setProfilePic(e.target.files[0])}
             id="file-ip-1"
             className="image_input"
-            onChange={(e) => setProfilePic(e.target.files[0])}
           />
         </div>
+
+        {/* Form Inputs */}
         <div className="form_inputs signup_form_input">
           <div>
             <label htmlFor="name">Name</label>
@@ -87,6 +94,7 @@ const SignUpPage = () => {
               <em className="form_error">{errors.name.message}</em>
             )}
           </div>
+
           <div>
             <label htmlFor="email">Email</label>
             <input
@@ -100,6 +108,7 @@ const SignUpPage = () => {
               <em className="form_error">{errors.email.message}</em>
             )}
           </div>
+
           <div>
             <label htmlFor="password">Password</label>
             <input
@@ -113,6 +122,7 @@ const SignUpPage = () => {
               <em className="form_error">{errors.password.message}</em>
             )}
           </div>
+
           <div>
             <label htmlFor="cpassword">Confirm Password</label>
             <input
@@ -126,21 +136,23 @@ const SignUpPage = () => {
               <em className="form_error">{errors.confirmPassword.message}</em>
             )}
           </div>
+
           <div className="signup_textares_section">
-            <label htmlFor="deliveryAddress">Delivery Address</label>
+            <label htmlFor="address">Delivery Address</label>
             <textarea
-              id="deliveryAddress"
+              id="address"
               className="input_textarea"
               placeholder="Enter delivery address"
               {...register("deliveryAddress")}
             />
-            {errors.address && (
-              <em className="form_error">{errors.address.message}</em>
+            {errors.deliveryAddress && (
+              <em className="form_error">{errors.deliveryAddress.message}</em>
             )}
           </div>
         </div>
 
         {formError && <em className="form_error">{formError}</em>}
+
         <button className="search_button form_submit" type="submit">
           Submit
         </button>
@@ -148,4 +160,5 @@ const SignUpPage = () => {
     </section>
   );
 };
+
 export default SignUpPage;

@@ -9,6 +9,7 @@ import LoginPage from "../Authentication/LoginPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import Logout from "../Authentication/Logout";
 import ProtectedRoute from "./ProtectedRoute";
+import LoginNeo from "../Authentication/LoginNeo";
 
 const Routing = () => {
   return (
@@ -17,7 +18,8 @@ const Routing = () => {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:id" element={<SingleProduct />} />
       <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginNeo />} />
+      {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route element={<ProtectedRoute />}>
         <Route path="/cart" element={<CartPage />} />
         <Route path="/myorders" element={<MyOrderPage />} />
