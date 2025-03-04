@@ -74,10 +74,7 @@ const App = () => {
     //   });
     //setCart([...cart, { product: product, quantity: quantity }]);
   };
-  const deleteCart = () => {
-    dispatchCart({ type: "DELETE_CART" });
 
-  };
   const removeFromCart = (id) => {
     dispatchCart({ type: "REMOVE_FROM_CART", payload: { id } });
     removeFromCartMutation.mutate(
@@ -121,7 +118,7 @@ const App = () => {
   return (
     <UserContext.Provider value={user}>
       <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, updateCart, deleteCart }}
+        value={{ cart, addToCart, removeFromCart, updateCart }}
       >
          <div className="app">
           <Navbar />

@@ -18,8 +18,6 @@ const cartReducer = (cart, action) => {
 
     case "GET_CART":
       return action.payload.products;
-    case "DELETE_CART":
-      return {};
     case "REVERT_CART":
       return action.payload.cart;
     case "REMOVE_FROM_CART":
