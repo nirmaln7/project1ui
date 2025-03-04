@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const CartPage = () => {
   const [subTotal, setSubTotal] = useState(0);
-  const { cart, removeFromCart, updateCart, setCart } = useContext(CartContext);
+  const { cart, removeFromCart, updateCart, deleteCart } = useContext(CartContext);
   const userObj = useContext(UserContext);
   useEffect(() => {
     let total = 0;
@@ -25,6 +25,7 @@ const CartPage = () => {
     checkoutAPI()
       .then(() => {
         toast.success("Order Placed");
+        deleteCart();
       })
       .catch(() => {
         toast.error("Something went wrong");
