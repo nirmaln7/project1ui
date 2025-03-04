@@ -86,7 +86,7 @@ const App = () => {
         },
       }
     );
-    removeFromCartAPI(id).catch((err) => {});
+    // removeFromCartAPI(id).catch((err) => {});
   };
 
   const updateCart = (type, id) => {

@@ -20,15 +20,15 @@ const CartPage = () => {
   }, [cart]);
 
   const checkout = () => {
-    const oldCart = [...cart];
-    setCart([]);
+    // const oldCart = [...cart];
+    // setCart([]);
     checkoutAPI()
       .then(() => {
         toast.success("Order Placed");
       })
       .catch(() => {
         toast.error("Something went wrong");
-        setCart(oldCart);
+        // setCart(oldCart);
       });
   };
   return (
