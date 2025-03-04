@@ -120,13 +120,13 @@ const App = () => {
       <CartContext.Provider
         value={{ cart, addToCart, removeFromCart, updateCart }}
       >
-        <div className="app">
+         <div className="app">
           <Navbar />
           <ToastContainer />
           <main>
             <Routing />
           </main>
-        </div>
+        </div> 
       </CartContext.Provider>
     </UserContext.Provider>
   );
