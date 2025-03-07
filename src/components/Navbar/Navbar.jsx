@@ -6,6 +6,7 @@ import idButton from "../../assets/idButton.png";
 import memo from "../../assets/memo.png";
 import order from "../../assets/order.png";
 import lock from "../../assets/lock.png";
+import usericon from "../../assets/admin-icon.png";
 
 import LinkWithIcon from "./LinkWithIcon";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -123,6 +124,11 @@ const Navbar = () => {
         )}
         {user && (
           <>
+            <LinkWithIcon
+              title="Admin Home"
+              link="/adminhome"
+              emoji={usericon}
+            />
             <LinkWithIcon title="My Orders" link="/myorders" emoji={order} />
             <LinkWithIcon title="Logout" link="/logout" emoji={lock} />
             <NavLink to="/cart" className="align_center">

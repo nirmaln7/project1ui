@@ -10,6 +10,7 @@ import SignUpPage from "../SignUpPage/SignUpPage";
 import Logout from "../Authentication/Logout";
 import ProtectedRoute from "./ProtectedRoute";
 import LoginNeo from "../Authentication/LoginNeo";
+import AdminHome from "../AdminHome/AdminHome";
 
 const Routing = () => {
   return (
@@ -24,6 +25,7 @@ const Routing = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/myorders" element={<MyOrderPage />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/adminhome" element={<AdminHome />} />
       </Route>
     </Routes>
   );

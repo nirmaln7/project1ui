@@ -16,7 +16,10 @@ const ProductCard = ({ product }) => {
       <div className="product_image">
         <NavLink to={"/products/" + product?._id} className="">
           <img
-            src={`${config.backendURL}/products/` + product?.images[0]}
+            src={
+              `${config.backendURL}/products/` +
+              (product?.images[0] || "cart.png")
+            }
             alt=""
           />
         </NavLink>
@@ -27,9 +30,9 @@ const ProductCard = ({ product }) => {
         <footer className="align_center product_info_footer">
           <div className="align_center">
             <p className="align_center product_rating">
-              <img src={star} alt="star" /> {product?.reviews.rate}
+              <img src={star} alt="star" /> {product?.reviews?.rate}
             </p>
-            <p className="product_review_count">{product?.reviews.counts}</p>
+            <p className="product_review_count">{product?.reviews?.counts}</p>
           </div>
           {product?.stock && user && (
             <button
