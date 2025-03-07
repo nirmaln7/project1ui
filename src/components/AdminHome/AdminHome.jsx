@@ -14,13 +14,9 @@ import useData from "../../hooks/useData";
 const AdminHome = ({ product }) => {
   const user = useContext(UserContext);
 
-  const { data: prodList, refetch } = useData("/products", null, [
-    "productlist",
-  ]);
+  const { data: prodList, refetch } = useData("/products", null, ["pddlist"]);
 
-  const { data: catList, catrefetch } = useData("/category", null, [
-    "categorylist",
-  ]);
+  const { data: catList, catrefetch } = useData("/category", null, ["ctglist"]);
 
   const [value, setValue] = React.useState(0);
 
